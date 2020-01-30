@@ -1,0 +1,25 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:Filmes="clr-namespace:UI.Filmes">
+    <DataTemplate x:Key="FilmeListaView" DataType="Filmes:FilmeListaViewModel">
+
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Left" Orientation="Horizontal">
+                <Button Command="{Binding PesquisarCommand}" Content="Pesquisar" Margin="10" Padding="5" FontSize="18" />
+                <Button Command="{Binding ComprarTicketCommand}" CommandParameter="{Binding ElementName=grdFilmes, Path=SelectedValue.Id}" Content="Comprar Ticket" Margin="10" Padding="5" FontSize="18" />
+            </StackPanel>
+
+            <DataGrid x:Name="grdFilmes" ItemsSource="{Binding Path=Filmes}" IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single" FontSize="15">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
+                    <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" />
+                    <DataGridTextColumn Header="Lançamento" Binding="{Binding DataLancamento, StringFormat=\{0:dd/MM/yyyy\}}" />
+                    <DataGridTextColumn Header="Genero" Binding="{Binding Genero}" />
+                    <DataGridTextColumn Header="MPAA" Binding="{Binding AvaliacaoMpaa}" />
+                    <DataGridTextColumn Header="Avaliação" Binding="{Binding Avaliacao}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+
+    </DataTemplate>
+</ResourceDictionary>
