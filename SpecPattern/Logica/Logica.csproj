@@ -68,6 +68,7 @@
     <Compile Include="Filmes\Filme.cs" />
     <Compile Include="Filmes\FilmeMap.cs" />
     <Compile Include="Filmes\FilmeRepositorio.cs" />
+    <Compile Include="Filmes\GenericSpecification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Entity.cs" />
     <Compile Include="Utils\Initer.cs" />

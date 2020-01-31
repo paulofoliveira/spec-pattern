@@ -18,7 +18,7 @@ namespace Logica.Filmes
             }
         }
 
-        public IReadOnlyList<Filme> RecuperarLista(bool paraCriancas, double avaliacaoMinima, bool disponivelComCD)
+        public IReadOnlyList<Filme> RecuperarLista(GenericSpecification<Filme> specification)
         {
             //Expression<Func<Filme, bool>> exp1 = paraCriancas ? Filme.PermitidoParaCriancas : p => true;
             //Expression<Func<Filme, bool>> exp2 = disponivelComCD ? Filme.TemVersaoEmCD : p => true;
@@ -26,10 +26,14 @@ namespace Logica.Filmes
 
             using (ISession session = SessionFactory.OpenSession())
             {
+                //return session.Query<Filme>()
+                //    .Where(p => (p.AvaliacaoMpaa <= AvaliacaoMpaaTipo.PG || !paraCriancas)
+                //    && p.Avaliacao >= avaliacaoMinima
+                //    && (p.DataLancamento <= DateTime.Now.AddMonths(-6) || !disponivelComCD))
+                //    .ToList();
+
                 return session.Query<Filme>()
-                    .Where(p => (p.AvaliacaoMpaa <= AvaliacaoMpaaTipo.PG || !paraCriancas)
-                    && p.Avaliacao >= avaliacaoMinima
-                    && (p.DataLancamento <= DateTime.Now.AddMonths(-6) || !disponivelComCD))
+                    .Where(specification.Expression)
                     .ToList();
             }
         }
