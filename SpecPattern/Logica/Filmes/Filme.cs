@@ -14,6 +14,9 @@ namespace Logica.Filmes
         protected Filme()
         {
         }
+
+        public virtual bool PermitidoParaCriancas() => AvaliacaoMpaa <= AvaliacaoMpaaTipo.PG;
+        public virtual bool TemVersaoEmCD() => DataLancamento <= DateTime.Now.AddMonths(-6);
     }
 
 

@@ -9,7 +9,7 @@ namespace UI.Common
     public abstract class ViewModel : INotifyPropertyChanged
     {
         public virtual double Height => 300;
-        public virtual double Width => 400;
+        public virtual double Width => 600;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
