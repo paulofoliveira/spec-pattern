@@ -38,7 +38,9 @@ namespace UI.Filmes
 
             var filme = filmeOuNada.Value;
 
-            if (!filme.TemVersaoEmCD())
+            var temVersaoEmCdSpec = Filme.TemVersaoEmCD.Compile();
+
+            if (!temVersaoEmCdSpec(filme))
             {
                 MessageBox.Show("O filme não tem uma versão em CD", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -56,7 +58,9 @@ namespace UI.Filmes
 
             var filme = filmeOuNada.Value;
 
-            if (!filme.PermitidoParaCriancas())
+            var permitidoParaCriancasSpec = Filme.PermitidoParaCriancas.Compile();
+
+            if (!permitidoParaCriancasSpec(filme))
             {
                 MessageBox.Show("O filme não é permitido para crianças", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;

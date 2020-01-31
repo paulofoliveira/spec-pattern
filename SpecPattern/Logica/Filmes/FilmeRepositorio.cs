@@ -4,6 +4,7 @@ using NHibernate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Logica.Filmes
 {
@@ -19,6 +20,10 @@ namespace Logica.Filmes
 
         public IReadOnlyList<Filme> RecuperarLista(bool paraCriancas, double avaliacaoMinima, bool disponivelComCD)
         {
+            //Expression<Func<Filme, bool>> exp1 = paraCriancas ? Filme.PermitidoParaCriancas : p => true;
+            //Expression<Func<Filme, bool>> exp2 = disponivelComCD ? Filme.TemVersaoEmCD : p => true;
+            // exp1 && exp2 não funciona =/ Para funcionar teria que fazer um Dissablemby e criar outra Expession com a junção das duas
+
             using (ISession session = SessionFactory.OpenSession())
             {
                 return session.Query<Filme>()
