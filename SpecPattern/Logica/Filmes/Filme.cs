@@ -16,8 +16,8 @@ namespace Logica.Filmes
         {
         }
 
-        public static readonly Expression<Func<Filme, bool>> PermitidoParaCriancas = p => p.AvaliacaoMpaa <= AvaliacaoMpaaTipo.PG;
-        public static readonly Expression<Func<Filme, bool>> TemVersaoEmCD = p => p.DataLancamento <= DateTime.Now.AddMonths(-6);
+        //public static readonly Expression<Func<Filme, bool>> PermitidoParaCriancas = p => p.AvaliacaoMpaa <= AvaliacaoMpaaTipo.PG;
+        //public static readonly Expression<Func<Filme, bool>> TemVersaoEmCD = p => p.DataLancamento <= DateTime.Now.AddMonths(-6);
 
         //public virtual bool PermitidoParaCriancas() => AvaliacaoMpaa <= AvaliacaoMpaaTipo.PG;
         //public virtual bool TemVersaoEmCD() => DataLancamento <= DateTime.Now.AddMonths(-6);

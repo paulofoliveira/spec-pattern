@@ -18,7 +18,7 @@ namespace Logica.Filmes
             }
         }
 
-        public IReadOnlyList<Filme> RecuperarLista(GenericSpecification<Filme> specification)
+        public IReadOnlyList<Filme> RecuperarLista(Specification<Filme> spec)
         {
             //Expression<Func<Filme, bool>> exp1 = paraCriancas ? Filme.PermitidoParaCriancas : p => true;
             //Expression<Func<Filme, bool>> exp2 = disponivelComCD ? Filme.TemVersaoEmCD : p => true;
@@ -33,7 +33,7 @@ namespace Logica.Filmes
                 //    .ToList();
 
                 return session.Query<Filme>()
-                    .Where(specification.Expression)
+                    .Where(spec.ToExpression())
                     .ToList();
             }
         }

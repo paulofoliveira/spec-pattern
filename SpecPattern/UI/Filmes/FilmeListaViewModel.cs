@@ -38,9 +38,11 @@ namespace UI.Filmes
 
             var filme = filmeOuNada.Value;
 
-            var specification = new GenericSpecification<Filme>(Filme.TemVersaoEmCD);
+            //var specification = new GenericSpecification<Filme>(Filme.TemVersaoEmCD);
 
-            if (!specification.IsSatisfiedBy(filme))
+            var spec = new DisponivelComCDSpecification();
+
+            if (!spec.IsSatisfiedBy(filme))
             {
                 MessageBox.Show("O filme não tem uma versão em CD", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -59,10 +61,11 @@ namespace UI.Filmes
             var filme = filmeOuNada.Value;
 
             //var permitidoParaCriancasSpec = Filme.PermitidoParaCriancas.Compile();
+            //var specification = new GenericSpecification<Filme>(Filme.PermitidoParaCriancas);
 
-            var specification = new GenericSpecification<Filme>(Filme.PermitidoParaCriancas);
+            var spec = new FilmeParaCriancasSpecification();
 
-            if (!specification.IsSatisfiedBy(filme))
+            if (!spec.IsSatisfiedBy(filme))
             {
                 MessageBox.Show("O filme não é permitido para crianças", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -78,9 +81,15 @@ namespace UI.Filmes
 
         private void Pesquisar()
         {
-            var specification = new GenericSpecification<Filme>(Filme.PermitidoParaCriancas);
-            
-            Filmes = _repositorio.RecuperarLista(specification);
+            var spec = Specification<Filme>.All;
+
+            if (ParaCriancas)
+                spec = spec.And(new FilmeParaCriancasSpecification());
+
+            if (DisponivelComCD)
+                spec = spec.And(new DisponivelComCDSpecification());
+
+            Filmes = _repositorio.RecuperarLista(spec);
             Notify(nameof(Filmes));
         }
     }

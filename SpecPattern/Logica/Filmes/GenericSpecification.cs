@@ -16,5 +16,5 @@ namespace Logica.Filmes
         {
             return Expression.Compile().Invoke(entity);
         }
-    }
+    }   
 }
